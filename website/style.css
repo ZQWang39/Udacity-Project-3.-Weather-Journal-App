@@ -1,0 +1,82 @@
+body{
+    background: #fffff8;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#app{
+    display: grid;
+    height:100%;
+    width: 430px;
+    grid-template-rows: 50px 50px 50px 1fr 1fr;
+    background: url(./img/background.jpg) no-repeat  center center;
+    color:whitesmoke;
+    border-radius: 10px;
+    margin: 50px auto;
+    
+}
+.holder{
+    margin-left:15px;
+}
+
+input,textarea{
+    opacity: 0.7;
+    border-radius: 5px;
+    border:none;
+    
+}
+
+.headline{
+    text-align: center;
+    font-size: larger;
+    padding-top: 5px;
+}
+
+button{
+    float: right;
+    margin-top: 10px;
+    margin-right: 42px;
+    border-radius: 5px;
+    border: none;
+    background: salmon;
+    color: whitesmoke;
+    font-size: 16px;
+    cursor: pointer;
+    
+    
+}
+button:hover{
+    background:rgb(247, 86, 68);
+}
+.entry{
+    padding-top: 10px;
+    text-align: center;
+}
+.title{
+    padding-bottom: 5px;
+}
+
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+/* Style for Placeholder Text*/
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: black; 
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: black; 
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: black; 
+    font-family: 'Oswald', sans-serif;
+
+} 
