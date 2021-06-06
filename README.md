@@ -1,3 +1,56 @@
+Project Weather Journal App
+
+3rd Project for UDACITY NanoDegree
+
+Overview
+
+This project requires to create an asynchronous web app that uses Web API and user data to dynamically update the UI. This will require modifying the server.js file and the website/app.js file. 
+
+File:
+
+Website Folder
+   img Folder
+   app.js
+   index.html
+   style.css
+
+server.js
+package-lock.json
+package.json
+
+
+In Terminal Install Node and packages:
+npm install express
+npm install cors
+npm install body-parser
+Must have Key from OpenWeatherAPI for the project to run
+In APP.js file add the API_KEY.
+
+RunningProject
+
+In the terminal run the server Node Server.js
+Open the HTML file in the browser
+
+
+Packages used in the project:
+express
+cors
+body-parser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Weather-Journal App Project
 
 The purpose of this project is to create an asynchronous web app that uses Web API and user data to dynamically update the UI for a Weather-Journal App.
