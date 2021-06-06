@@ -54,6 +54,9 @@ button:hover{
 .title{
     padding-bottom: 5px;
 }
+#feelings{
+    margin-top: 15px;
+}
 
 /* Reset style for HTML element on active to have no border*/
 input:focus,
