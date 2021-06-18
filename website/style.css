@@ -30,6 +30,10 @@ input,textarea{
     border:none;
     
 }
+input{
+    padding-top: 10px;
+    
+}
 
 .headline{
     text-align: center;
