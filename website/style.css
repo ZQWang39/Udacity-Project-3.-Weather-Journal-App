@@ -19,7 +19,7 @@ body{
 }
 
 input,textarea{
-    opacity: 0.7;
+    opacity: 0.5;
     border-radius: 5px;
     border:none;
     
