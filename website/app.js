@@ -1,7 +1,12 @@
-/* Global Variables */
+//To encrypt API key
+const dotenv = require('dotenv');
+dotenv.config();
 
+
+/* Global Variables */
+const key = process.env.API_KEY;
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = '&appid=XXXXXXXXXXXXXXXXXXXXXX&units=metric';
+const apiKey = `&appid=${key}&units=metric`;
 
 // Create a new date instance dynamically with JS
 let d = new Date();
