@@ -46,6 +46,8 @@ input{
 }
 
 button{
+    width: 75px;
+    height: 25px;
     float: right;
     margin-top: 10px;
     margin-right: 42px;
