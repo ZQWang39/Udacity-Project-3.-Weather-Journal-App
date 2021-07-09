@@ -7,6 +7,10 @@ const bodyParser = require('body-parser');
 // Start up an instance of app
 const app = express();
 
+//To encrypt API key
+const dotenv = require('dotenv');
+dotenv.config();
+
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,13 +22,18 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
 
-//GET route
+app.get('/', (req,res)=>{
+ res.sendFile("dist/index.html");
+})
 
+//GET route
+/*
 app.get('/all',(req,res)=>{
     res.send(projectData);
     console.log(projectData);
 
 });
+
 
 //POST route
 app.post('/add',(req,res)=>{
@@ -43,7 +52,7 @@ app.post('/add',(req,res)=>{
     console.log(projectData);
 })
 // Setup Server
-
+*/
 
 const port = 8080;
 const server = app.listen(port, listening);

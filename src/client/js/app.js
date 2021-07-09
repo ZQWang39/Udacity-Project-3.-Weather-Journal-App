@@ -1,16 +1,12 @@
 
-/* Global Variables */
+/* Global Variables
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = `&appid=XXXXXXXXXXXXXXXXXXXXXXXXXX&units=metric`;
+const apiKey = `&appid=353de7bcd1a9dcbed3b1e9290d08485a&units=metric`;
+ */
 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+1 +'.'+ d.getDate()+'.'+ d.getFullYear();
-
-
-//function called by event listener 
-
-document.getElementById('generate').addEventListener('click',performAction);
 
 
 export function performAction(e){
@@ -28,18 +24,45 @@ export function performAction(e){
     if(feelings ==''){
         confirm('Are you sure do not want to say anything?')
     }
+    postWeatherData("http://localhost:8801/weather", {date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings})
+    .then(function(data){
+        console.log(data);
+        updateUI(data);
+    });
+
+    /*
     getWeather(baseURL, newZip, countryCode, apiKey)
     .then(function(data){
         console.log(data);
-        postData('/add', {date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings})
+        postData('http://localhost:8081/weather', {date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings})
         updateUI();
     })
+    */
 
 };
 
+ //POST WeatherBit API data
+ const postWeatherData = async (url = "", data = {}) =>{
+        
+    const response = await fetch(url, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });//end of response
+    try {
+        const newData = await response.json();
+               return newData
+      }catch(error) {
+      console.log("error", error);
+  
+      }
+  
+}
+
 //GET web API data
 
-const getWeather = async (baseURL, zip, countryCode, key) =>{
+/*const getWeather = async (baseURL, zip, countryCode, key) =>{
      const res = await fetch(baseURL+zip+','+countryCode+key);
      try{
          const data = await res.json();
@@ -71,22 +94,14 @@ const postData = async ( url = '', data = {})=>{
 
     }
 }
-
+*/
 //Updating UI elements
-
-const updateUI = async()=>{
-    const request = await fetch('/all');
-    try{
-        const allData = await request.json();
-        document.getElementById('date').innerHTML = `Date: ${allData.date}`;
-        document.getElementById('city').innerHTML = `City: ${allData.city}`;
-        document.getElementById('temp').innerHTML = `Temperature: ${allData.temp}`;
-        document.getElementById('feels-like').innerHTML = `Feels like: ${allData.feels_like}`;
-        document.getElementById('content').innerHTML = `Feelings: ${allData.content}`;
-       
-    }catch(error){
-        console.log('error',error);
-    }
+function updateUI(data){
+        document.getElementById('date').innerHTML = `Date: ${data.date}`;
+        document.getElementById('city').innerHTML = `City: ${data.city}`;
+        document.getElementById('temp').innerHTML = `Temperature: ${data.temp}`;
+        document.getElementById('feels-like').innerHTML = `Feels like: ${data.feels_like}`;
+        document.getElementById('content').innerHTML = `Feelings: ${data.content}`;
 }
 
 
