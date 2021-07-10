@@ -22,47 +22,17 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
 
-app.get('/', (req,res)=>{
- res.sendFile("dist/index.html");
-})
-
-//API data
-
-const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = `&appid=353de7bcd1a9dcbed3b1e9290d08485a&units=metric`;
-
-app.post('/weather', async function (req, res){
-    //user input
-    console.log(req.body)
-    const zip = req.body.zip;
-    const content = req.body.content;
-    const code = req.body.countryCode;
-    const urlApi = `${baseURL}${zip},${code}${apiKey}`
-    const response = await fetch(urlApi);
-    try {
-     const APIData = await response.json();
-     console.log('server side data', APIData);
-     res.send(APIData);
-     return APIData
-     
- }
- catch (error) {
-     console.log("error", error);
- }
-    
- });
 
 //GET route
-/*
+
 app.get('/all',(req,res)=>{
     res.send(projectData);
     console.log(projectData);
 
 });
 
-
 //POST route
-app.post('/add',(req,res)=>{
+app.post('/weather',(req,res)=>{
     let data = req.body;
     console.log('server side data', data);
     newEntry = {
@@ -78,7 +48,7 @@ app.post('/add',(req,res)=>{
     console.log(projectData);
 })
 // Setup Server
-*/
+
 
 const port = 8080;
 const server = app.listen(port, listening);

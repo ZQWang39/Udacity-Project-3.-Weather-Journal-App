@@ -1,8 +1,8 @@
 
-/* Global Variables
+//Global Variables
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = `&appid=353de7bcd1a9dcbed3b1e9290d08485a&units=metric`;
- */
+
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -23,26 +23,29 @@ export function performAction(e){
     };
     if(feelings ==''){
        confirm('Are you sure do not want to say anything?')
-    }
-    postWeatherData("http://localhost:8081/weather",{zip:newZip, content:feelings, code:countryCode} )//{date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings}
-    .then(function(data){
-        console.log(data);
-        updateUI(data);
-    });
-
-    /*
+    };
     getWeather(baseURL, newZip, countryCode, apiKey)
     .then(function(data){
         console.log(data);
-        postData('http://localhost:8081/weather', {date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings})
-        updateUI();
+        postData('/weather', {date:newDate, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings})
+        updateUI(data);
     })
-    */
+ };
 
-};
+   //GET web API data
 
+const getWeather = async (baseURL, zip, countryCode, key) =>{
+    const res = await fetch(baseURL+zip+','+countryCode+key);
+    try{
+        const data = await res.json();
+        console.log(data);
+        return data;
+    }catch(error){
+        console.log("error", error);
+    }
+}
  //POST WeatherBit API data
- const postWeatherData = async (url = "", data = {}) =>{
+ const postData = async (url = "", data = {}) =>{
         
     const response = await fetch(url, {
         method: "POST",
@@ -60,19 +63,52 @@ export function performAction(e){
   
 }
 
-//GET web API data
+//Updating UI elements
 
-/*const getWeather = async (baseURL, zip, countryCode, key) =>{
-     const res = await fetch(baseURL+zip+','+countryCode+key);
-     try{
-         const data = await res.json();
-         console.log(data);
-         return data;
-     }catch(error){
-         console.log("error", error);
-     }
+const updateUI = async()=>{
+    const request = await fetch('/all');
+    try{
+        const allData = await request.json();
+        document.getElementById('date').innerHTML = `Date: ${allData.date}`;
+        document.getElementById('city').innerHTML = `City: ${allData.city}`;
+        document.getElementById('temp').innerHTML = `Temperature: ${allData.temp}`;
+        document.getElementById('feels-like').innerHTML = `Feels like: ${allData.feels_like}`;
+        document.getElementById('content').innerHTML = `Feelings: ${allData.content}`;
+       
+    }catch(error){
+        console.log('error',error);
+    }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    getWeather(baseURL, newZip, countryCode, apiKey)
+    .then(function(data){
+        console.log(data);
+        postData('http://localhost:8081/weather', {date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings})
+        updateUI();
+    })
+    */
+
+
+
+
+/*
 //POST data
 
 const postData = async ( url = '', data = {})=>{
@@ -95,13 +131,4 @@ const postData = async ( url = '', data = {})=>{
     }
 }
 */
-//Updating UI elements
-function updateUI(data){
-        document.getElementById('date').innerHTML = `Date: ${data.date}`;
-        document.getElementById('city').innerHTML = `City: ${data.city}`;
-        document.getElementById('temp').innerHTML = `Temperature: ${data.temp}`;
-        document.getElementById('feels-like').innerHTML = `Feels like: ${data.feels_like}`;
-        document.getElementById('content').innerHTML = `Feelings: ${data.content}`;
-}
-
 
