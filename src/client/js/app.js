@@ -22,9 +22,9 @@ export function performAction(e){
         alert('Please enter your zipcode!')
     };
     if(feelings ==''){
-        confirm('Are you sure do not want to say anything?')
+       confirm('Are you sure do not want to say anything?')
     }
-    postWeatherData("http://localhost:8801/weather", {date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings})
+    postWeatherData("http://localhost:8081/weather",{zip:newZip, content:feelings, code:countryCode} )//{date:d, city: data.name, temp:data.main.temp,feels_like:data.main.feels_like, content:feelings}
     .then(function(data){
         console.log(data);
         updateUI(data);
