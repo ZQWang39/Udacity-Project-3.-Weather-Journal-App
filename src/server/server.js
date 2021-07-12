@@ -36,11 +36,11 @@ app.post('/weather',(req,res)=>{
     let data = req.body;
     console.log('server side data', data);
     newEntry = {
-        date: req.body.date,
-        city:req.body.city,
-        temp:req.body.temp,
-        feels_like:req.body.feels_like,
-        content:req.body.content,
+        date: data.date,
+        city:data.city,
+        temp:data.temp,
+        feels_like:data.feels_like,
+        content:data.content,
         
     }
     //projectData.push(newEntry);
