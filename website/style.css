@@ -69,6 +69,7 @@ button:hover{
 }
 .title{
     padding-bottom: 5px;
+    font-weight: bolder;
 }
 #feelings{
     margin-top: 15px;
