@@ -21,6 +21,8 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.4",
     "extract-loader": "^5.1.0",
+    "favicons": "^6.2.2",
+    "favicons-webpack-plugin": "^5.0.2",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
     "html-withimg-loader": "^0.1.16",
